@@ -8,6 +8,7 @@ name = "pypi"
 flask = "*"
 requests = "*"
 twilio = "*"
+ddg = "*"
 
 
 [dev-packages]
