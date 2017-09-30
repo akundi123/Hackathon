@@ -1,3 +1,4 @@
+
 import os
 import re
 import json
@@ -5,29 +6,7 @@ import requests
 from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import MessagingResponse
 
-app = Flask(__name__)
-"""
-@app.route('/sms', methods=['GET','POST'])
-def sms():
-    number = request.form['From']
-    message_body = request.form['Body']
-    print("Got this far")
-    query_extractor = r"^(!?[^\s]+)?\s{1}(.*)"
-    print(query_extractor)
-    matches = re.findall(query_extractor, message_body, re.MULTILINE)
-    
-    bang = matches[0][0]
-    query = matches[0][1]
 
-    print("Bang is {} & query is {}".format(bang, query))
-
-    resp = MessagingResponse()
-
-    resp.message("Bang is {} & query is {}".format(bang, query))
-    #resp.message("THANKS FOR THE INFO!!")
-    return str(resp)
-
-"""
 @app.route('/sms', methods=['GET','POST'])
 def wolfram():
     #Interact with simple api from wolframalpha
@@ -46,5 +25,4 @@ def wolfram():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
 
