@@ -12,11 +12,11 @@ def sms():
 	msg = request.form['Body']
 
 	if msg.lower().startswith('from'):
-		maps.maps()
+		return maps.maps()
 	elif msg.lower().startswith('weather') or msg.lower().startswith('temp'):
-		weather()
+		return weather()
 	else:
-		wolfram_alpha.wolfram()
+		return wolfram_alpha.wolfram()
 
 #TODO temporary
 def weather():
