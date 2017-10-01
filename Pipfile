@@ -9,6 +9,7 @@ flask = "*"
 requests = "*"
 twilio = "*"
 ddg = "*"
+googlemaps = "*"
 
 
 [dev-packages]

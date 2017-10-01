@@ -7,14 +7,11 @@ from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import MessagingResponse
 
 
-import duckduckgo
-
-
 app = Flask(__name__)
 
 
 @app.route('/sms', methods=['GET','POST'])
-def sms():
+def duckduckgo():
 	number = request.form['From']
 	message_body = request.form['Body']
 	
