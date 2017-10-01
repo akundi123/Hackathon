@@ -1,19 +1,17 @@
 
 import os
 import re
+import json
 
 from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import MessagingResponse
-
-
-import duckduckgo
 
 
 app = Flask(__name__)
 
 
 @app.route('/sms', methods=['GET','POST'])
-def sms():
+def duckduckgo():
 	number = request.form['From']
 	message_body = request.form['Body']
 	
@@ -35,7 +33,12 @@ def sms():
         "skip_disambig": "1",
         }
 
-	reply = requests.get(duckduckgo, params = duckduckgo_params)
+	search_result = requests.get(duckduckgo_url, params = duckduckgo_params).content.decode("utf-8")
+	duckduckgo_json = json.loads(search_result)
+	
+	
+	
+	print(reply)
 
 	resp = MessagingResponse()
 	# resp.message('Hello {}, you said: {}'.format(number, message_body))
