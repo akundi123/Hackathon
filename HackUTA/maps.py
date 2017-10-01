@@ -33,9 +33,9 @@ def maps():
 	# res = "https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood4&key={}".format(maps_api_key)
 	gmaps = googlemaps.Client(key = maps_api_key)
 	
-	origin_geocode = gmaps.geocode(origin)
+	# origin_geocode = gmaps.geocode(origin)
 	time_to_leave = datetime.now() if time_to_leave == "" else time_to_leave
-	directions = gmaps.directions(destination, mode = via, departure_time = time_to_leave)
+	directions = gmaps.directions(origin = origin, destination = destination, mode = via, departure_time = time_to_leave)
 	
 	html_tags_remover = re.compile('<.*?>')
 	
@@ -44,13 +44,13 @@ def maps():
 	for step in html_steps:
 		steps.append(re.sub(html_tags_remover, '', step["html_instructions"]))
 	
-	reply = steps
+	reply = str("""
+				{}
+				""".format("\n".join(steps))
 
 	resp = MessagingResponse()
-	# resp.message('Hello {}, you said: {}'.format(number, message_body))
-	# resp.message("Bang is {} & query is {}".format(bang, query))
 	resp.message(reply)
-	# resp.message("THANKS FOR THE INFO!!")
+	
 	return str(resp)
 
 
