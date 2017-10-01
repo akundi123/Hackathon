@@ -37,8 +37,9 @@ def weather():
 	weather = darksky.weather(latitude = location["lat"], longitude = location["lng"])
 	
 	now = weather.now
-
-	reply = list(map(str, [now.temperature, now.summary, now.humidity, now.ozone]))	
+	
+	# reply = list(map(str, [now.temperature, now.summary, now.humidity, now.ozone]))
+	reply = "The temperature is {}.\nIt is {}.\nThe humidity is {}.\nAnd the ozone is {}.".format(now.temperature, now.summary, now.humidity, now.ozone)
 
 	resp = MessagingResponse()
 	resp.message(reply)
