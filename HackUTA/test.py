@@ -24,12 +24,23 @@ def sms():
 	bang = matches[0][0]
 	query = matches[0][1]
 	print("Bang is {} & query is {}".format(bang, query))
+	
+	duckduckgo_url = "http://api.duckduckgo.com/"
+	duckduckgo_params = {
+        "q": message_body, # query,
+        "format": "json",
+        "pretty": "1",
+        "no_redirect": "1",
+        "no_html": "1",
+        "skip_disambig": "1",
+        }
 
-	reply = ""
+	reply = requests.get(duckduckgo, params = duckduckgo_params)
 
 	resp = MessagingResponse()
 	# resp.message('Hello {}, you said: {}'.format(number, message_body))
-	resp.message("Bang is {} & query is {}".format(bang, query))
+	# resp.message("Bang is {} & query is {}".format(bang, query))
+	resp.message(reply)
 	# resp.message("THANKS FOR THE INFO!!")
 	return str(resp)
 
