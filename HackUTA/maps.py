@@ -19,7 +19,7 @@ def maps():
 	number = request.form['From']
 	message_body = request.form['Body']
 	
-	query_extractor = r"From (.*)\nTo (.*)\nVia (.*)\nLeave (.*)"
+	query_extractor = r"From (.*)\nTo (.*)\nVia (.*)\nLeave (.*)?"
 
 	matches = re.findall(query_extractor, message_body, re.MULTILINE | re.IGNORECASE)
 
@@ -34,7 +34,7 @@ def maps():
 	gmaps = googlemaps.Client(key = maps_api_key)
 	
 	origin_geocode = gmaps.getcode(origin)
-	time_to_leave = datetime.now()
+	time_to_leave = datetime.now() if time_to_leave == "" else time_to_leave
 	directions = gmaps.directions(destination, mode = via, departure_time = time_to_leave)
 	
 	html_tags_remover = re.compile('<.*?>')
