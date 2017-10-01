@@ -1,8 +1,8 @@
 import os
 from flask import Flask, request
 
-from HackUTA.maps import maps
-from HackUTA.wolfram_alpha import wolfram
+import maps
+import wolfram_alpha
 
 app = Flask(__name__)
 
@@ -12,20 +12,15 @@ def sms():
 	msg = request.form['Body']
 
 	if msg.lower().startswith('from'):
-		maps()
+		maps.maps()
 	elif msg.lower().startswith('weather') or msg.lower().startswith('temp'):
 		weather()
 	else:
-		wolfram()
-
-@app.route('/', methods=['GET', 'POST'])
-def static():
-	#TODO static web page
-	pass
+		wolfram_alpha.wolfram()
 
 #TODO temporary
 def weather():
-	wolfram()
+	wolfram_alpha.wolfram()
 
 
 if __name__ == '__main__':
