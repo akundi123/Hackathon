@@ -46,7 +46,7 @@ def maps():
 	
 	reply = str("""
 				{}
-				""".format("\n".join(steps))
+				""".format("\n".join(steps)))
 
 	resp = MessagingResponse()
 	resp.message(reply)
