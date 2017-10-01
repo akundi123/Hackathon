@@ -19,7 +19,7 @@ def wolfram():
 	
 	# r = "http://api.wolframalpha.com/v1/result?appid={}&i={}%3f".format(appid,msg.replace(' ','+'))
 	# response = requests.get(r).content.decode('utf-8')
-	wolfram_url = "http://api.wolframalpha.com/v1/result?appid={}&i={}%3f"
+	wolfram_url = "http://api.wolframalpha.com/v1/result"
 	response = requests.get(wolfram_url, params = {"appid" : appid, "i" : msg}).content.decode("utf-8")
 	
 	print(response)

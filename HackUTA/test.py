@@ -25,6 +25,8 @@ def sms():
 	query = matches[0][1]
 	print("Bang is {} & query is {}".format(bang, query))
 
+	reply = ""
+
 	resp = MessagingResponse()
 	# resp.message('Hello {}, you said: {}'.format(number, message_body))
 	resp.message("Bang is {} & query is {}".format(bang, query))
