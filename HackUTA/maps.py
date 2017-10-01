@@ -45,8 +45,8 @@ def maps():
 		steps.append(re.sub(html_tags_remover, '', step["html_instructions"]))
 	
 	reply = str("""
-				{}
-				""".format("\n".join(steps)))
+				-{}
+				""".format("\n-".join(steps)))
 
 	resp = MessagingResponse()
 	resp.message(reply)

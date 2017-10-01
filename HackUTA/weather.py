@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import os
 import re
@@ -50,8 +51,30 @@ def get_location():
 	location_geocode = gmaps.geocode(origin)
 	
 	return location_geocode[0]["geometry"]["location"]
+=======
+import os
+import re
+import json
+import requests
+from flask import Flask, request, redirect
+from twilio.twiml.messaging_response import MessagingResponse
+
+app = Flask(__name__)
+
+
+@app.route('/sms', methods=['GET', 'POST'])
+def weather():
+	msg = request.form['Body']
+	#queryextractor =
+	loc = msg.split()[-1]
+	print(loc)
+>>>>>>> 7123adb1791bb2a65069f8c495595b4be078340c
 
 if __name__ == '__main__':
 	app.run(debug=True)
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7123adb1791bb2a65069f8c495595b4be078340c

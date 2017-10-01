@@ -1,29 +1,27 @@
 import os
-import requests
 from flask import Flask, request
-from twilio.twiml.messaging_response import MessagingResponse
+
+import maps
+import wolfram_alpha
 
 app = Flask(__name__)
 
-
 @app.route('/sms', methods=['GET', 'POST'])
-def wolfram():
+def sms():
+	number = request.form['From']
 	msg = request.form['Body']
-	# EX: https://api.wolframalpha.com/v1/result?i=What+is+the+stock+price+of+Twitter%3F&appid=DEMO
-	# TODO env variable
-	appid = "KLEJ7L-X4Y9P4KLV5" #
 
-	wolfram_url = "http://api.wolframalpha.com/v1/result"
-	response = requests.get(wolfram_url, params={"appid": appid, "i": msg}).content.decode("utf-8")
+	if msg.lower().startswith('from'):
+		maps.maps()
+	elif msg.lower().startswith('weather') or msg.lower().startswith('temp'):
+		weather()
+	else:
+		wolfram_alpha.wolfram()
 
-	print(response)
-	out = MessagingResponse()
-	out.message(response)
-	return str(out)
+#TODO temporary
+def weather():
+	wolfram_alpha.wolfram()
 
-
-def maps():
-	pass
 
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT", 5000))
