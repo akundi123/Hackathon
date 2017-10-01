@@ -8,7 +8,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
 
-@app.route('/sms', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def wolfram():
 	#Interact with simple api from wolframalpha
 	number = request.form['From']
