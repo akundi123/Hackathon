@@ -1,5 +1,6 @@
+import os
 import requests
-from flask import Flask, request, session
+from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
@@ -22,10 +23,9 @@ def wolfram():
 
 
 def maps():
-	#recieves 'directions from {} to {}'
-	# or 		'directions to {} from {}'
 	pass
 
 if __name__ == '__main__':
-	app.run()
+	port = int(os.environ.get("PORT", 5000))
+	app.run(host='0.0.0.0', port=port)
 
