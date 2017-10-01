@@ -16,13 +16,9 @@ def sms():
 		return maps.maps()
 	elif msg.lower().startswith('weather'):
 		return weather.weather()
-		#return weather()
 	else:
 		return wolfram_alpha.wolfram()
 
-#TODO temporary
-def weather():
-	wolfram_alpha.wolfram()
 
 
 if __name__ == '__main__':
