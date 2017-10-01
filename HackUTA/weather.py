@@ -48,8 +48,7 @@ def weather():
 
 def get_location(origin):
 	maps_api_key = "AIzaSyCEMNKObdTlNK8zdDc2kalZ8y3bRpJo5A0"
-	gmaps = googlemaps.Client(key = maps_api_key)
-	
+	gmaps = googlemaps.Client(key = maps_api_key)	
 	location_geocode = gmaps.geocode(origin)
 	
 	return location_geocode[0]["geometry"]["location"]
