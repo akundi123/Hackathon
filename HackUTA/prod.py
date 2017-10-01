@@ -3,6 +3,7 @@ from flask import Flask, request
 
 import maps
 import wolfram_alpha
+import weather
 
 app = Flask(__name__)
 
@@ -13,8 +14,9 @@ def sms():
 
 	if msg.lower().startswith('from'):
 		return maps.maps()
-	elif msg.lower().startswith('weather') or msg.lower().startswith('temp'):
-		return weather()
+	elif msg.lower().startswith('weather'):
+		return weather.weather()
+		#return weather()
 	else:
 		return wolfram_alpha.wolfram()
 
