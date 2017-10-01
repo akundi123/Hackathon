@@ -1,21 +1,19 @@
 import os
-import requests
 from flask import Flask, request
-from twilio.twiml.messaging_response import MessagingResponse
+
+from HackUTA.maps import maps
+from HackUTA.wolfram_alpha import wolfram
 
 app = Flask(__name__)
 
 @app.route('/sms', methods=['GET', 'POST'])
 def sms():
-	wolfram()
-
-def default():
 	number = request.form['From']
 	msg = request.form['Body']
 
-	if msg.startswith('directions'):
+	if msg.lower().startswith('from'):
 		maps()
-	elif msg.startswith('weather') or msg.startswith('temperature'):
+	elif msg.lower().startswith('weather') or msg.lower().startswith('temp'):
 		weather()
 	else:
 		wolfram()
@@ -25,28 +23,8 @@ def static():
 	#TODO static web page
 	pass
 
-
-def wolfram():
-	msg = request.form['Body']
-	# EX: https://api.wolframalpha.com/v1/result?i=What+is+the+stock+price+of+Twitter%3F&appid=DEMO
-	# TODO env variable
-	appid = "KLEJ7L-X4Y9P4KLV5" #
-
-	wolfram_url = "http://api.wolframalpha.com/v1/result"
-	response = requests.get(wolfram_url, params={"appid": appid, "i": msg}).content.decode("utf-8")
-
-	print(response)
-	out = MessagingResponse()
-	out.message(response)
-	return str(out)
-
-
-def maps():
-	#TODO temporary
-	wolfram()
-
+#TODO temporary
 def weather():
-	#TODO temporary
 	wolfram()
 
 
